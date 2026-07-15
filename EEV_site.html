@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEV - Infraestrutura de Redes Corporativas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #004080;
+            --accent-color: #0066cc;
+            --light-color: #f0f8ff;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 1.1em;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .btn:hover {
+            background-color: #0055aa;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .service {
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .values {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .value-item {
+            background-color: var(--light-color);
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1 1 200px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            margin: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">EEV</div>
+        <div class="slogan">Interconectando empresas com segurança, desempenho e inovação.</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="inicio" class="hero">
+            <h1>Infraestrutura de Redes Corporativas</h1>
+            <p>A EEV oferece soluções completas em infraestrutura de redes, segurança da informação e comunicação VoIP, conectando empresas por meio de tecnologias modernas, seguras e escaláveis.</p>
+            <a href="#contato" class="btn">Solicitar Orçamento</a>
+        </section>
+        
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p>A EEV foi fundada com o objetivo de oferecer soluções de qualidade em intercomunicação de redes e infraestrutura para empresas de pequeno porte, com um atendimento personalizado e focado nas reais necessidades de cada cliente.</p>
+            <p>Nossa missão é fornecer soluções confiáveis e escaláveis que garantam disponibilidade, segurança e alto desempenho para empresas. Utilizamos tecnologias modernas para entregar ambientes corporativos preparados para crescer.</p>
+            
+            <h3 style="margin-top: 25px; color: var(--secondary-color);">Nossos Valores</h3>
+            <div class="values">
+                <div class="value-item">
+                    <h4>Qualidade</h4>
+                    <p>Proteção da infraestrutura com boas práticas e tecnologias modernas.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Inovação</h4>
+                    <p>Busca contínua por inovação e soluções escaláveis.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Transparência</h4>
+                    <p>Alta disponibilidade e confiabilidade dos serviços.</p>
+                </div>
+                <div class="value-item">
+                    <h4>Comprometimento</h4>
+                    <p>Compromisso com a qualidade e satisfação dos clientes.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="servicos">
+            <h2>Nossos Serviços</h2>
+            <div class="services">
+                <div class="service">
+                    <h3>Infraestrutura de Redes</h3>
+                    <p>Projeto e implantação de redes corporativas com cabeamento estruturado e equipamentos profissionais.</p>
+                </div>
+                <div class="service">
+                    <h3>Interconexão de Redes</h3>
+                    <p>Implantação de VPN Site-to-Site para comunicação segura entre matriz e filiais.</p>
+                </div>
+                <div class="service">
+                    <h3>Segurança da Informação</h3>
+                    <p>Configuração de firewall, DMZ e políticas de segurança para proteção dos dados corporativos.</p>
+                </div>
+                <div class="service">
+                    <h3>Active Directory</h3>
+                    <p>Gerenciamento centralizado de usuários, computadores e políticas de segurança.</p>
+                </div>
+                <div class="service">
+                    <h3>Monitoramento</h3>
+                    <p>Monitoramento da infraestrutura utilizando Zabbix e centralização de logs com Graylog.</p>
+                </div>
+                <div class="service">
+                    <h3>Comunicação VoIP</h3>
+                    <p>Implantação de centrais telefônicas IP utilizando Issabel PBX.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contato">
+            <h2>Entre em Contato</h2>
+            <p>Entre em contato com a equipe da EEV e descubra como podemos desenvolver uma infraestrutura de rede segura, eficiente e preparada para sua empresa.</p>
+            
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <div class="error-message" id="nome-error">Por favor, insira seu nome.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="email-error">Por favor, insira um e-mail válido.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    <div class="error-message" id="mensagem-error">Por favor, insira uma mensagem.</div>
+                </div>
+                
+                <button type="submit" class="btn">Enviar Mensagem</button>
+                
+                <div class="success-message" id="success-message">
+                    Mensagem enviada com sucesso!
+                </div>
+            </form>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 EEV - Interconectando empresas com segurança, desempenho e inovação.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Telefone:</strong> (84) 2346-7986
+            </div>
+            <div class="contact-item">
+                <strong>E-mail:</strong> contato@eev.com.br
+            </div>
+            <div class="contact-item">
+                <strong>Endereço:</strong> Avenida Olavo Lacerda Montenegro, 111 - Nova Parnamirim, Parnamirim - RN
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+    </footer>
+
+    <script>
+        // Rolagem suave para as seções
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Validação do formulário
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Resetar mensagens de erro
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            // Validação dos campos
+            let isValid = true;
+            
+            const nome = document.getElementById('nome');
+            const email = document.getElementById('email');
+            const mensagem = document.getElementById('mensagem');
+            
+            if (!nome.value.trim()) {
+                document.getElementById('nome-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email.value.trim() || !isValidEmail(email.value)) {
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!mensagem.value.trim()) {
+                document.getElementById('mensagem-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Se o formulário for válido, exibir mensagem de sucesso
+            if (isValid) {
+                successMessage.style.display = 'block';
+                contactForm.reset();
+                
+                // Ocultar a mensagem após 5 segundos
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+        });
+        
+        // Função para validar e-mail
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
